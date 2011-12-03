@@ -1,13 +1,16 @@
 var piechart = window.piechart = new (function() {
 	
 	Raphael.fn.pieSlice = function(x, y, r, startAngle, endAngle) {
+		// http://www.w3.org/TR/SVG/paths.html#PathDataEllipticalArcCommands
+		var largeArcFlag = (endAngle - startAngle > Math.PI) ? 1 : 0,
+			sweepFlag = 1;
 		return this.path([
 			// Start at center
 			'M', x, y,
 			// Line to beginning of arc
 			'L', x + r * Math.cos(startAngle), y + r * Math.sin(startAngle),
 			// Arc across to end...
-			'A', r, r, 0, 0, 1, x + r * Math.cos(endAngle), y + r * Math.sin(endAngle),
+			'A', r, r, 0, largeArcFlag, sweepFlag, x + r * Math.cos(endAngle), y + r * Math.sin(endAngle),
 			// Return to center.
 			'Z'
 		]);
