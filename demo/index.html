@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<title>Embedded pie chart demo</title>
+		<link rel="stylesheet" type="text/css" href="../style/piechart.css">
+		<script src="http://code.jquery.com/jquery-1.7.1.js"></script>
+		<script src="../lib/raphael.js"></script>
+		<script src="../js/piechart.js"></script>
+		<script type="text/javascript">
+			$(document).bind('ready', function(event) {
+				piechart.draw({"data":[23,40,67],"labels":["small","medium","large"]});
+				$('#spinner').hide();
+			});
+		</script>
+	</head>
+	<body>
+		<div id="chart"></div>
+		<div id="spinner"></div>
+	</body>
+</html>
+
