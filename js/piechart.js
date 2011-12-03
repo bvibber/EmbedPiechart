@@ -12,6 +12,20 @@ var piechart = window.piechart = new (function() {
 			'Z'
 		]);
 	};
+	
+	var colors = [
+		'blue',
+		'green',
+		'cyan',
+		'red',
+		'magenta',
+		'yellow',
+		'gray',
+	];
+	
+	function pickColor(i) {
+		return colors[i % colors.length];
+	}
 
 	this.draw = function(data) {
 		var values = data.data,
@@ -30,17 +44,16 @@ var piechart = window.piechart = new (function() {
 				console.log(sum);
 				sum += values[i];
 			}
-			console.log(sum);
 
 			for (i = 0; i < values.length; i++) {
 				arclen[i] = (values[i] / sum) * 2 * Math.PI;
 			}
-			console.log(sum, values, arclen);
 
 			for (i = 0; i < values.length; i++) {
-				console.log(cx, cy, r, arcpos, arcpos + arclen[i]);
-				paper.pieSlice(cx, cy, r, arcpos, arcpos + arclen[i]);
+				var pie = paper.pieSlice(cx, cy, r, arcpos, arcpos + arclen[i]);
 				arcpos += arclen[i];
+				
+				pie.attr('fill', pickColor(i));
 			}
 		}
 	}
