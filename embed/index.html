@@ -8,8 +8,8 @@
 		<script src="../js/piechart.js"></script>
 		<script src="../js/embed-client.js"></script>
 		<script type="text/javascript">
-			$(document).bind('embed-activate', function(event) {
-				piechart.draw(event.data);
+			$(document).bind('EmbedSandbox:activate', function(event, msg) {
+				piechart.draw(msg.data);
 				$('#spinner').hide();
 			});
 		</script>
